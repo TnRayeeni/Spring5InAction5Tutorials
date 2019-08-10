@@ -7,7 +7,7 @@
 <title>My Web App</title>
 </head>
 <body>
-	<h1>Hello World Again!</h1>
-	<a href="/logout">Logout</a>
+	Logout home<br />
+	<a href="/">home</a>
 </body>
 </html>

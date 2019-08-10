@@ -11,4 +11,14 @@ public class HomeController {
 		return "home.jsp";
 	}
 	
+	@RequestMapping(value = "/login")
+	public String loginPage() {
+		return "login.jsp";
+	}
+	
+	@RequestMapping(value = "/logout-success")
+	public String logoutPage() {
+		return "logout.jsp";
+	}
+	
 }
