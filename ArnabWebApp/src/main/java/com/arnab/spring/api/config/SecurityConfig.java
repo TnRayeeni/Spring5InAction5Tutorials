@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2019, ARNAB BANERJEE. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted only for academic purposes.
+ * 
+ * For further queries / info: arnab.ban09@gmail.com
+ */
+
 package com.arnab.spring.api.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -60,11 +68,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return provider;
 	}
 	
+	/**
+	 * This method creates a bean of PasswordEncoder. This PasswordEncoder bean is then injected in above setPasswordEncoder method.
+	 * And also this autowires with any PasswordEncoder instance thoughout the app.
+	 * @return
+	 */
 	@Bean
 	public PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
 
+	/**
+	 * The below method is actually configuring the security at HTTP level and securing the URLs at which requests will land.
+	 * 1. It will disable the CSRF.
+	 * 2. It will authorize all requests coming to this app through 'login' url.
+	 * 3. It will skip authenticate and authorize for url - 'register' so that anonymous user can register.
+	 * 4. It will authenticate all the requests.
+	 * 5. It authenticates, provide a form to provide login credentials.
+	 * 6. It implements logout feature and provide a url after successful logout.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
