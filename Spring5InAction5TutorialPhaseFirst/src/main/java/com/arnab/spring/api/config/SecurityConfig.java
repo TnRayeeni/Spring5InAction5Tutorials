@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -42,14 +43,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/pizza/findall", "/pizza/findone/", "/pizza/save", "/saveingredient.html", "/home.html",
-						"/pizza/findone/**")
-				.hasRole("USER").antMatchers("/", "/**").permitAll()
-				.and()
-				.formLogin().defaultSuccessUrl("/home.html").permitAll()
-				.and().logout()
-				.permitAll().and().csrf().disable();
+		/*
+		 * http.authorizeRequests() .antMatchers("/login").permitAll() .and()
+		 * .formLogin().defaultSuccessUrl("/home.html").permitAll() .and().logout()
+		 * .permitAll().and().csrf().disable();
+		 */
+		http.csrf().disable()
+		.authorizeRequests().antMatchers("/login").permitAll()
+		.anyRequest().authenticated()
+		.and()
+		.formLogin().defaultSuccessUrl("/home.html").permitAll()
+		.and()
+		.logout().invalidateHttpSession(true).clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		.permitAll();
 	}
 
 	@Bean
