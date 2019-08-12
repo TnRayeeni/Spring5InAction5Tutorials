@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	// THE BELOW CODE IS FOR DATABASE/JDBC BASED AUTHENTICATION. PLEASE READ CAREFULLY.
+	
 	/**
 	 * The below method is used to use a database, like MySQL, to access the username and password. Means
 	 * it is using a database for authentication and authorization. This is basically JDBC-based
@@ -98,12 +100,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().invalidateHttpSession(true).clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			.logoutSuccessUrl("/logout-success").permitAll();
-	}
-
-	/*
-	 * @Override public void configure(WebSecurity web) throws Exception {
-	 * web.ignoring().antMatchers("/register", "/register.html"); }
-	 */	
+	}	
 	
 	// THIS BELOW CODE IS FOR IN-MEMORY AUTHENTICATION. PLEASE READ CARFULLY.
 	
