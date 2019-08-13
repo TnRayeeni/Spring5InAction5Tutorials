@@ -1,0 +1,18 @@
+#
+# Copyright (c) 2019, ARNAB BANERJEE. All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted only for academic purposes.
+# 
+# For further queries / info: arnab.ban09@gmail.com
+#
+
+server:
+  port: 8080
+spring:
+  application:
+    name: ArnabWebApp
+  datasource:
+    url: jdbc:mysql://us-cdbr-iron-east-02.cleardb.net/ad_3a7516d05a5bef5
+    username: b02425197e5cbc
+    password: be980650
