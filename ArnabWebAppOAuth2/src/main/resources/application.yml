@@ -12,7 +12,18 @@ server:
 spring:
   application:
     name: ArnabWebApp
-  datasource:
-    url: jdbc:mysql://us-cdbr-iron-east-02.cleardb.net/ad_3a7516d05a5bef5
-    username: b02425197e5cbc
-    password: be980650
+
+security:
+  oauth2:
+    client:
+      clientId: 106702785550-guai0d3n4tlld3hq6iikal5as77f1774.apps.googleusercontent.com
+      clientSecret: nAi2ZCy39CwAvEXGEydR2VPu
+      accessTokenUri: https://www.googleapis.com/oauth2/v3/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+      scope: profile email
+    resource:
+      userInfoUri: https://www.googleapis.com/userinfo/v2/me
+      preferTokenInfo: false
